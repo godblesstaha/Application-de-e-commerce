@@ -17,6 +17,7 @@ class CommandeController {
         $this->categorieModel = new Categorie();
     }
     
+    private function checkLogin() {
         if (!isset($_SESSION['utilisateur_id'])) {
             header('Location: index.php?page=connexion');
             exit;
@@ -26,7 +27,7 @@ class CommandeController {
     public function index() {
         $this->checkLogin();
         
-        if ($this->panierModel->isEmpty()) {
+        if ($this->panierModel->getCount() == 0) {
             $_SESSION['erreur'] = 'Votre panier est vide';
             header('Location: index.php?page=panier');
             exit;
@@ -46,7 +47,6 @@ class CommandeController {
         
         return view('commande', $data);
     }
-    
     public function placer() {
         $this->checkLogin();
         
@@ -55,7 +55,7 @@ class CommandeController {
             exit;
         }
         
-        if ($this->panierModel->isEmpty()) {
+        if ($this->panierModel->getCount() == 0) {
             $_SESSION['erreur'] = 'Votre panier est vide';
             header('Location: index.php?page=panier');
             exit;
@@ -106,3 +106,4 @@ class CommandeController {
         exit;
     }
 }
+?>
