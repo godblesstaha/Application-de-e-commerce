@@ -9,29 +9,29 @@ ini_set('display_errors', 1);
 
 define('BASE_PATH', dirname(dirname(__FILE__)));
 // needs spacenames
-require_once BASE_PATH . '/App/Config/Database.php';
+require_once BASE_PATH . '/E-comerce/App/Config/Database.php';
 
-require_once BASE_PATH . '/App/Models/Categorie.php';
-require_once BASE_PATH . '/App/Models/Produit.php';
-require_once BASE_PATH . '/App/Models/Promotion.php';
-require_once BASE_PATH . '/App/Models/Publicite.php';
-require_once BASE_PATH . '/App/Models/Image.php';
-require_once BASE_PATH . '/App/Models/Panier.php';
-require_once BASE_PATH . '/App/Models/Commande.php';
-require_once BASE_PATH . '/App/Models/Utilisateur.php';
-require_once BASE_PATH . '/App/Models/PDFGenerator.php';
+require_once BASE_PATH . '/E-comerce/App/Models/Categorie.php';
+require_once BASE_PATH . '/E-comerce/App/Models/Produit.php';
+require_once BASE_PATH . '/E-comerce/App/Models/Promotion.php';
+require_once BASE_PATH . '/E-comerce/App/Models/Publicite.php';
+require_once BASE_PATH . '/E-comerce/App/Models/Image.php';
+require_once BASE_PATH . '/E-comerce/App/Models/Panier.php';
+require_once BASE_PATH . '/E-comerce/App/Models/Commande.php';
+require_once BASE_PATH . '/E-comerce/App/Models/Utilisateur.php';
+require_once BASE_PATH . '/E-comerce/App/Models/PDFGenerator.php';
 
-require_once BASE_PATH . '/App/Controllers/AccueilController.php';
-require_once BASE_PATH . '/App/Controllers/ProduitsController.php';
-require_once BASE_PATH . '/App/Controllers/CategoriesController.php';
-require_once BASE_PATH . '/App/Controllers/PanierController.php';
-require_once BASE_PATH . '/App/Controllers/AuthController.php';
-require_once BASE_PATH . '/App/Controllers/ProfilController.php';
-require_once BASE_PATH . '/App/Controllers/CommandeController.php';
+require_once BASE_PATH . '/E-comerce/App/Controllers/AccueilController.php';
+require_once BASE_PATH . '/E-comerce/App/Controllers/ProduitsController.php';
+require_once BASE_PATH . '/E-comerce/App/Controllers/CategoriesController.php';
+require_once BASE_PATH . '/E-comerce/App/Controllers/PanierController.php';
+require_once BASE_PATH . '/E-comerce/App/Controllers/AuthController.php';
+require_once BASE_PATH . '/E-comerce/App/Controllers/ProfilController.php';
+require_once BASE_PATH . '/E-comerce/App/Controllers/CommandeController.php';
 
 function view($viewName, $data = []) {
     extract($data);
-    $viewPath = BASE_PATH . '/App/Views/' . $viewName . '.php';
+    $viewPath = BASE_PATH . '/E-comerce/App/Views/' . $viewName . '.php';
     
     if (file_exists($viewPath)) {
         ob_start();

@@ -78,7 +78,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php?page=accueil">
                 <?php if (isset($logo) && $logo): ?>
-                    <img src="public/uploads/logo.png" alt="Logo" class="logo-img me-2">
+                    <img src="App/public/uploads/logo.png" alt="Logo" class="logo-img me-2">
                 <?php endif; ?>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

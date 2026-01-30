@@ -3,6 +3,7 @@
 class Database {
     private static $instance = null;
     private $pdo;
+
     private $host = 'localhost';
     private $dbname = 'dbecommerce';
     private $username = 'root';
