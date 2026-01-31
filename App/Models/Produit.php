@@ -52,41 +52,41 @@ public function getByCategory(int $idCategorie): array {
         return [];
     }
 }
-public function getById($idProduit) {
-    try {
-        $stmt = $this->db->prepare("
-            SELECT 
-                idProduit,
-                nomProduit,
-                description,
-                prix,
-                urlImage,
-                idCategorie,
-                quantiteStock,
-                marque
-            FROM produits
-            WHERE idProduit = ?
-        ");
-        $stmt->execute([$idProduit]);
-        $produit = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        if ($produit) {
-            if (!empty($produit['urlImage'])) {
-                if (!preg_match('/^https?:\/\//', $produit['urlImage']) && 
-                    !preg_match('/^public\//', $produit['urlImage'])) {
-                    $produit['urlImage'] = 'public/uploads/' . basename($produit['urlImage']);
+    public function getById($idProduit) {
+        try {
+            $stmt = $this->db->prepare("
+                SELECT 
+                    idProduit,
+                    nomProduit,
+                    description,
+                    prix,
+                    urlImage,
+                    idCategorie,
+                    quantiteStock,
+                    marque
+                FROM produits
+                WHERE idProduit = ?
+            ");
+            $stmt->execute([$idProduit]);
+            $produit = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if ($produit) {
+                if (!empty($produit['urlImage'])) {
+                    // Si c'est déjà une URL externe, ne rien changer
+                    if (!preg_match('/^https?:\/\//', $produit['urlImage'])) {
+                        $produit['urlImage'] = 'public/uploads/' . basename($produit['urlImage']);
+                    }
+                } else {
+                    $produit['urlImage'] = 'public/uploads/default.png';
                 }
-            } else {
-                $produit['urlImage'] = 'public/uploads/default.png';
             }
+            
+            return $produit;
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            return false;
         }
-        
-        return $produit;
-    } catch (PDOException $e) {
-        error_log($e->getMessage());
-        return false;
     }
-}
     public function getWithPromotions(): array {
         try {
             $stmt = $this->db->prepare("

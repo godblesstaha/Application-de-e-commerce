@@ -117,10 +117,6 @@
             <a href="index.php?page=panier" class="btn btn-outline-light position-relative ms-2">
                 <i class="bi bi-cart3"></i> Panier
                 <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    <?php 
-                    $panier = new Panier();
-                    echo $panier->getCount();
-                    ?>
                 </span>
             </a>
         </div>

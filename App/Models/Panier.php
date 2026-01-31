@@ -4,10 +4,15 @@ class Panier {
     private $session_key = 'panier';
 
     public function __construct() {
-        if (!isset($_SESSION[$this->session_key])) {
-            $_SESSION[$this->session_key] = [];
-        }
+
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
     }
+
+    if (!isset($_SESSION[$this->session_key])) {
+        $_SESSION[$this->session_key] = [];
+    }
+}
 
     public function ajouter($idProduit, $quantite, $prix) {
         if (isset($_SESSION[$this->session_key][$idProduit])) {
